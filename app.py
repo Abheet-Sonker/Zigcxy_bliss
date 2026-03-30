@@ -103,8 +103,7 @@ if st.button("Place Order via WhatsApp"):
         st.warning("⚠️ Please fill required details (Name, Email & Mobile)")
 
     else:
-        message = f"""
-🕯️ *New Candle Order - Zigcxy Bliss*
+        message = f"""🕯️ *Zigcxy Bliss Order*
 
 👤 Name: {name}
 📧 Email: {email}
@@ -112,23 +111,19 @@ if st.button("Place Order via WhatsApp"):
 🏠 Hall: {hall}
 🚪 Room: {room}
 
-🕯️ Candle Details:
-Type: {glass}
-Bubble Size: {bubble_size}
-Look: {look}
-Category: {ctype}
-Color: {color}
-Fragrance: {fragrance}
+🕯️ Type: {glass}
+📦 Bubble Size: {bubble_size}
+🎨 Look: {look}
+🧾 Category: {ctype}
+🎨 Color: {color}
+🌸 Fragrance: {fragrance}
 
 💰 Price: ₹{price}
 """
 
         encoded_message = urllib.parse.quote(message)
-
         whatsapp_url = f"https://wa.me/{YOUR_NUMBER}?text={encoded_message}"
 
-        st.markdown(f"[👉 Click here to send order on WhatsApp]({whatsapp_url})")
+        st.link_button("📲 Confirm Order on WhatsApp", whatsapp_url)
 
-        st.success("✅ Click above link to confirm your order on WhatsApp")
-
-        st.info("📌 Note: Order will be confirmed from our side after receiving your WhatsApp message.")
+        st.success("✅ Click button above to send your order")
