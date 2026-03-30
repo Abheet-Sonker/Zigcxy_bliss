@@ -27,12 +27,12 @@ fragrance_options = ["Sea Salt", "French Lilac", "Lavender"]
 # ==========================================
 
 images = {
-    "Jar": "Jar.jpeg",
-    "Cylindrical": "cylinder.jpeg",
-    "Wine Glass": "Wine_glass.jpeg",
-    "Bubble Candle": "Bubble.jpeg",
-    "Sea Theme": "Sea_view.jpeg",
-    "Flower Theme": "Flower_theme.jpeg",
+    "Jar": "images/Jar.jpeg",
+    "Cylindrical": "images/cylinder.jpeg",
+    "Wine Glass": "images/Wine_glass.jpeg",
+    "Bubble Candle": "images/Bubble.jpeg",
+    "Sea Theme": "images/Sea_view.jpeg",
+    "Flower Theme": "images/Flower_theme.jpeg",
 }
 
 # ==========================================
