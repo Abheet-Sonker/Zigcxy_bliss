@@ -240,11 +240,10 @@ if st.button("➕ Add To Cart"):
 
 st.header("🛒 Your Cart")
 
-grand_total = 0
-
 if not st.session_state.cart:
 
     st.info("Cart is empty.")
+    cart_total = 0
 
 else:
 
@@ -257,30 +256,16 @@ else:
             if item["product"] == "Wax Sachet":
 
                 st.write(f"Shape: {item['shape']}")
-                st.write(
-                    f"Background Color: {item['bg_color']}"
-                )
-                st.write(
-                    f"Flower Color: {item['flower_color']}"
-                )
+                st.write(f"Background Color: {item['bg_color']}")
+                st.write(f"Flower Color: {item['flower_color']}")
 
             else:
 
-                st.write(
-                    f"Color: {item['color']}"
-                )
+                st.write(f"Color: {item['color']}")
 
-            st.write(
-                f"Fragrance: {item['fragrance']}"
-            )
-
-            st.write(
-                f"Quantity: {item['qty']}"
-            )
-
-            st.write(
-                f"Subtotal: ₹{item['total']}"
-            )
+            st.write(f"Fragrance: {item['fragrance']}")
+            st.write(f"Quantity: {item['qty']}")
+            st.write(f"Subtotal: ₹{item['total']}")
 
             if st.button(
                 f"❌ Remove Item {idx+1}",
@@ -288,15 +273,30 @@ else:
             ):
                 st.session_state.cart.pop(idx)
                 st.rerun()
-        
-        grand_total += item["total"]
-        if grand_total < 198:
-            grand_total += 40
 
-    if grand_total < 198:
-        st.warning(
-            "₹40 delivery charge applied because Order valur is below 198."
-        )
+    cart_total = sum(
+        item["total"]
+        for item in st.session_state.cart
+    )
+
+# Delivery Charge
+delivery_charge = 0
+
+if cart_total > 0 and cart_total < 198:
+    delivery_charge = 40
+
+grand_total = cart_total + delivery_charge
+
+if delivery_charge > 0:
+
+    st.warning(
+        "₹40 delivery charge applied because order value is below ₹198."
+    )
+
+if cart_total > 0:
+
+    st.write(f"Items Total: ₹{cart_total}")
+    st.write(f"Delivery Charge: ₹{delivery_charge}")
 
     st.subheader(
         f"💰 Grand Total: ₹{grand_total}"
