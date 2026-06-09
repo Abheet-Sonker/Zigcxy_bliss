@@ -142,9 +142,9 @@ YOUR_NUMBER = "916394996857"
 
 if st.button("🛒 Place Order"):
 
-    if not name or not mobile or not hall or not room:
+    if not name or not mobile or not Address:
 
-        st.warning("Please fill Name, Mobile Number, Hall and room number.")
+        st.warning("Please fill Name, Mobile Number and Address.")
 
     else:
 
