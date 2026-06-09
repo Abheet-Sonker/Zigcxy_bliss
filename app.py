@@ -293,6 +293,11 @@ else:
         if grand_total < 198:
             grand_total += 40
 
+    if grand_total < 198:
+    st.warning(
+        "₹40 delivery charge applied because Order valur is below 198."
+    )
+
     st.subheader(
         f"💰 Grand Total: ₹{grand_total}"
     )
