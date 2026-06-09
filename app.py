@@ -65,7 +65,7 @@ if product == "Mess Glow Candle":
     color = st.selectbox("Choose Jar Color", colors)
     fragrance = st.selectbox("Choose Fragrance", fragrances)
 
-    price = 299
+    price = 199
 
 elif product == "Terracotta Glow Candle":
 
@@ -74,7 +74,7 @@ elif product == "Terracotta Glow Candle":
     color = st.selectbox("Choose Jar Color", colors)
     fragrance = st.selectbox("Choose Fragrance", fragrances)
 
-    price = 199
+    price = 299
 
 elif product == "Wax Sachet":
 
