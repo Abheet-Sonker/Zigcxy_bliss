@@ -174,7 +174,6 @@ if st.button("🛒 Place Order"):
 🕯️ *Zigcxy Bliss Order*
 
 👤 Name: {name}
-📧 Email: {email}
 📱 Mobile: {mobile}
 🏠 Hall: {hall}
 🚪 Room: {room}
