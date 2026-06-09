@@ -211,12 +211,6 @@ qty = st.number_input(
 item_total = price * qty
 
 st.subheader(f"💰 Item Total: ₹{item_total}")
-
-if delivery_charge > 0:
-    st.warning(
-        "₹40 delivery charge applied because Wax Sachet quantity is less than 2."
-    )
-
 # ==========================================
 # ADD TO CART
 # ==========================================
@@ -405,15 +399,18 @@ Subtotal: ₹{item['total']}
 
             total += item["total"]
 
-        order_details += f"""
-delivery_charge = 40 if total < 198 else 0
-grand_total = total + delivery_charge
-Subtotal: ₹{total}
-Delivery Charge: ₹{delivery_charge}
+        delivery_charge = 40 if 0 < grand_total < 198 else 0
+        grand_total = total + delivery_charge
+
+    order_details += f"""
+
+    Subtotal: ₹{total}
+    Delivery Charge: ₹{delivery_charge}
 
 💰 GRAND TOTAL: ₹{grand_total}
 
 Thank you for shopping with Zigcxy Bliss ✨
+"""
 
 """
 
