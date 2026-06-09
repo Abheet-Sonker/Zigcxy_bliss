@@ -128,8 +128,7 @@ st.header("📋 Customer Details")
 
 name = st.text_input("Name")
 mobile = st.text_input("Mobile Number")
-hall = st.text_input("Hall No")
-room = st.text_input("Room No")
+Address = st.text_input("Address(Hall no, Room No.)")
 
 # ==========================================
 # WHATSAPP NUMBER
@@ -156,8 +155,7 @@ if st.button("🛒 Place Order"):
 
 👤 Name: {name}
 📱 Mobile: {mobile}
-🏠 Hall: {hall}
-🚪 Room: {room}
+🏠 Address: {Address}
 
 📦 Product: {product}
 ⭐ Shape: {shape}
@@ -175,8 +173,7 @@ if st.button("🛒 Place Order"):
 
 👤 Name: {name}
 📱 Mobile: {mobile}
-🏠 Hall: {hall}
-🚪 Room: {room}
+🏠 Address: {Address}
 
 📦 Product: {product}
 🎨 Color: {color}
