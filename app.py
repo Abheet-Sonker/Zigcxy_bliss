@@ -208,12 +208,7 @@ qty = st.number_input(
 # PRICE CALCULATION
 # ==========================================
 
-delivery_charge = 0
-
-if product == "Wax Sachet" and qty < 2:
-    delivery_charge = 40
-
-item_total = (price * qty) + delivery_charge
+item_total = price * qty
 
 st.subheader(f"💰 Item Total: ₹{item_total}")
 
@@ -312,9 +307,17 @@ else:
 
         grand_total += item["total"]
 
-    st.subheader(
-        f"💰 Grand Total: ₹{grand_total}"
-    )
+    delivery_charge = 40 if grand_total < 198 else 0
+    final_total = grand_total + delivery_charge
+    
+    st.subheader(f"Subtotal: ₹{grand_total}")
+    
+    if delivery_charge:
+        st.warning(
+            "₹40 delivery charge applied because order value is below ₹198."
+        )
+    
+    st.subheader(f"💰 Final Total: ₹{final_total}")
 
 # ==========================================
 # CUSTOMER DETAILS
@@ -403,10 +406,15 @@ Subtotal: ₹{item['total']}
             total += item["total"]
 
         order_details += f"""
+delivery_charge = 40 if total < 198 else 0
+grand_total = total + delivery_charge
+Subtotal: ₹{total}
+Delivery Charge: ₹{delivery_charge}
 
-💰 GRAND TOTAL: ₹{total}
+💰 GRAND TOTAL: ₹{grand_total}
 
 Thank you for shopping with Zigcxy Bliss ✨
+
 """
 
         encoded_message = urllib.parse.quote(
