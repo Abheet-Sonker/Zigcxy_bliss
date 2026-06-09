@@ -237,13 +237,6 @@ if st.button("➕ Add To Cart"):
 # ==========================================
 # CART
 # ==========================================
-st.warning(
-    "⚠️ Important: After selecting colors, fragrance and quantity, click '➕ Add To Cart'."
-)
-
-st.markdown(
-    "### 👇 Click Add To Cart to save this customization"
-)
 st.header("🛒 Your Cart")
 
 if not st.session_state.cart:
