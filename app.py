@@ -69,7 +69,7 @@ if product == "Mess Glow Candle":
 
 elif product == "Terracotta Glow Candle":
 
-    st.image("images/Terracotta Glow.png", width=250)
+    st.image("images/Terracota Glow.png", width=250)
 
     color = st.selectbox("Choose Jar Color", colors)
     fragrance = st.selectbox("Choose Fragrance", fragrances)
