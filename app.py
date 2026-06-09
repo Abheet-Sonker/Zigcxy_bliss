@@ -198,7 +198,7 @@ qty = st.number_input(
 # ==========================================
 # PRICE CALCULATION
 # ==========================================
-
+item_total = (price * qty)
 st.subheader(f"💰 Item Total: ₹{item_total}")
 
 # ==========================================
