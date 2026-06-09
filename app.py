@@ -199,19 +199,7 @@ qty = st.number_input(
 # PRICE CALCULATION
 # ==========================================
 
-delivery_charge = 0
-
-if product == "Wax Sachet" and qty < 2:
-    delivery_charge = 40
-
-item_total = (price * qty) + delivery_charge
-
 st.subheader(f"💰 Item Total: ₹{item_total}")
-
-if delivery_charge > 0:
-    st.warning(
-        "₹40 delivery charge applied because Wax Sachet quantity is less than 2."
-    )
 
 # ==========================================
 # ADD TO CART
@@ -300,8 +288,10 @@ else:
             ):
                 st.session_state.cart.pop(idx)
                 st.rerun()
-
+        
         grand_total += item["total"]
+        if grand_total < 198:
+            grand_total += 40
 
     st.subheader(
         f"💰 Grand Total: ₹{grand_total}"
