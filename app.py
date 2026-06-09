@@ -390,7 +390,7 @@ Subtotal: ₹{item['total']}
 
         order_details += f"""
 
-💰 GRAND TOTAL: ₹{total}
+💰 GRAND TOTAL: ₹{total + delivery_charge}
 
 Thank you for shopping with Zigcxy Bliss ✨
 """
