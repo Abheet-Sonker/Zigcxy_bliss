@@ -201,16 +201,6 @@ qty = st.number_input(
 
 item_total = (price * qty)
 
-st.subheader(f"💰 Item Total: ₹{item_total}")
-
-st.warning(
-    "⚠️ Important: After selecting colors, fragrance and quantity, click '➕ Add To Cart' to save this product."
-)
-
-st.markdown(
-    "### 👇 Click Add To Cart to save this customization"
-)
-
 # ==========================================
 # ADD TO CART
 # ==========================================
@@ -224,16 +214,25 @@ if st.button("➕ Add To Cart"):
         "total": item_total
     }
 
-    # baaki tumhara existing code
+    if product == "Wax Sachet":
+
+        item.update({
+            "shape": shape,
+            "bg_color": color_bg,
+            "flower_color": color_flr,
+            "fragrance": fragrance
+        })
+
+    else:
+
+        item.update({
+            "color": color,
+            "fragrance": fragrance
+        })
 
     st.session_state.cart.append(item)
 
     st.success("✅ Product added to cart!")
-
-    st.toast(
-        "🛒 Item saved in cart successfully!",
-        icon="🎉"
-    )
 # ==========================================
 # CART
 # ==========================================
