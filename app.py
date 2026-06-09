@@ -4,78 +4,119 @@ import urllib.parse
 # ==========================================
 # PAGE CONFIG
 # ==========================================
-st.set_page_config(page_title="Zigcxy Bliss", layout="centered")
+st.set_page_config(
+    page_title="Zigcxy Bliss",
+    page_icon="🕯️",
+    layout="centered"
+)
 
-st.title("🕯️ Zigcxy Bliss - Customize Your Candle")
-st.write("Create your perfect aesthetic candle ✨")
+st.title("🕯️ Zigcxy Bliss")
+st.subheader("Customize & Order Your Handmade Products")
+
+# ==========================================
+# PRODUCT SELECTION
+# ==========================================
+
+product = st.selectbox(
+    "Choose Product",
+    [
+        "Mess Glow Candle",
+        "Terracotta Glow Candle",
+        "Wax Sachet"
+    ]
+)
 
 # ==========================================
 # OPTIONS
 # ==========================================
 
-glass_options = ["Jar", "Cylindrical", "Wine Glass", "Bubble Candle"]
-bubble_sizes = ["3x3", "2x2"]
+colors = [
+    "White",
+    "Red",
+    "Blue",
+    "Green",
+    "Pink",
+    "Yellow",
+    "Orange"
+]
 
-look_options = ["Sea Theme", "Flower Theme"]
-type_options = ["Water Candle", "Crystal Gel Candle", "Full Wax Shape Candle"]
+fragrances = [
+    "Amber",
+    "Cinnamon",
+    "Coffee",
+    "Lavender",
+    "Vanilla",
+]
 
-color_options = ["Red", "Blue", "Green", "Orange", "Brown"]
-fragrance_options = ["Sea Salt", "French Lilac", "Lavender"]
-
-# ==========================================
-# IMAGE PATHS
-# ==========================================
-
-images = {
-    "Jar": "images/Jar.jpeg",
-    "Cylindrical": "images/Cylinder.jpeg",
-    "Wine Glass": "images/Wine_glass.jpeg",
-    "Bubble Candle": "images/Bubble.jpeg",
-    "Sea Theme": "images/Sea_view.jpeg",
-    "Flower Theme": "images/Flower_theme.jpeg",
-}
-
-# ==========================================
-# SELECTIONS
-# ==========================================
-
-glass = st.selectbox("Choose Candle Type", glass_options)
-st.image(images[glass], width=180)
-
-if glass == "Bubble Candle":
-    bubble_size = st.selectbox("Choose Bubble Size", bubble_sizes)
-    color = st.selectbox("Choose Color", color_options)
-    fragrance = st.selectbox("Choose Fragrance", fragrance_options)
-
-    look = "N/A"
-    ctype = "Bubble Candle"
-
-else:
-    look = st.selectbox("Choose Look", look_options)
-    st.image(images[look], width=180)
-
-    ctype = st.selectbox("Choose Candle Type", type_options)
-    color = st.selectbox("Choose Color", color_options)
-    fragrance = st.selectbox("Choose Fragrance", fragrance_options)
-
-    bubble_size = "N/A"
+sachet_shapes = [
+    "Rectangular",
+    "Rhombus",
+    "Oval"
+]
 
 # ==========================================
-# PRICE
+# PRODUCT CUSTOMIZATION
 # ==========================================
 
-price = 0
+if product == "Mess Glow Candle":
 
-if glass == "Cylindrical":
-    price = 325
-elif glass == "Jar" and ctype == "Water Candle":
-    price = 225
-elif glass == "Wine Glass":
-    price = 425
-elif glass == "Jar" and ctype == "Full Wax Shape Candle":
+    st.image("images/Mess Glow.png", width=250)
+
+    color = st.selectbox("Choose Jar Color", colors)
+    fragrance = st.selectbox("Choose Fragrance", fragrances)
+
+    price = 299
+
+elif product == "Terracotta Glow Candle":
+
+    st.image("images/Terracotta Glow.png", width=250)
+
+    color = st.selectbox("Choose Jar Color", colors)
+    fragrance = st.selectbox("Choose Fragrance", fragrances)
+
     price = 199
-elif glass == "Bubble Candle":
-    price = 149 if bubble_size == "3x3" else 49
+
+elif product == "Wax Sachet":
+
+    st.subheader("Choose Shape")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.image("images/Rectangular.png", caption="Rectangular")
+
+    with col2:
+        st.image("images/Rhombus.png", caption="Rhombus")
+
+    with col3:
+        st.image("images/Oval.png", caption="Oval")
+
+    shape = st.radio(
+        "Select Shape",
+        ["Rectangular", "Rhombus", "Oval"],
+        horizontal=True
+    )
+
+    color_bg = st.selectbox(
+        "Choose Background Color",
+        colors
+    )
+
+    color_flr = st.selectbox(
+        "Choose Flower Color",
+        colors
+    )
+
+    fragrance = st.selectbox(
+        "Choose Fragrance",
+        fragrances
+    )
+
+    price = 99
+
+# ==========================================
+# PRICE DISPLAY
+# ==========================================
 
 st.subheader(f"💰 Price: ₹{price}")
 
@@ -83,27 +124,35 @@ st.subheader(f"💰 Price: ₹{price}")
 # CUSTOMER DETAILS
 # ==========================================
 
-st.subheader("📋 Customer Details")
+st.header("📋 Customer Details")
 
 name = st.text_input("Name")
-email = st.text_input("Email")
 mobile = st.text_input("Mobile Number")
 hall = st.text_input("Hall No")
-room = st.text_input("Hostel Room No")
+room = st.text_input("Room No")
 
 # ==========================================
-# WHATSAPP BUTTON
+# WHATSAPP NUMBER
 # ==========================================
 
-YOUR_NUMBER = "916394996857"   # 👉 Replace with your WhatsApp number
+YOUR_NUMBER = "916394996857"
 
-if st.button("Place Order via WhatsApp"):
+# ==========================================
+# ORDER BUTTON
+# ==========================================
 
-    if not (name and mobile and email):
-        st.warning("⚠️ Please fill required details (Name, Email & Mobile)")
+if st.button("🛒 Place Order"):
+
+    if not name or not mobile or not hall or not room:
+
+        st.warning("Please fill Name, Mobile Number, Hall and room number.")
 
     else:
-        message = f"""🕯️ *Zigcxy Bliss Order*
+
+        if product == "Wax Sachet":
+
+            order_details = f"""
+🕯️ *Zigcxy Bliss Order*
 
 👤 Name: {name}
 📧 Email: {email}
@@ -111,19 +160,44 @@ if st.button("Place Order via WhatsApp"):
 🏠 Hall: {hall}
 🚪 Room: {room}
 
-🕯️ Type: {glass}
-📦 Bubble Size: {bubble_size}
-🎨 Look: {look}
-🧾 Category: {ctype}
+📦 Product: {product}
+⭐ Shape: {shape}
+🎨 Background Color: {color_bg}
+🎨 Background Color: {color_flr}
+🌸 Fragrance: {fragrance}
+
+💰 Price: ₹{price}
+"""
+
+        else:
+
+            order_details = f"""
+🕯️ *Zigcxy Bliss Order*
+
+👤 Name: {name}
+📧 Email: {email}
+📱 Mobile: {mobile}
+🏠 Hall: {hall}
+🚪 Room: {room}
+
+📦 Product: {product}
 🎨 Color: {color}
 🌸 Fragrance: {fragrance}
 
 💰 Price: ₹{price}
 """
 
-        encoded_message = urllib.parse.quote(message)
-        whatsapp_url = f"https://wa.me/{YOUR_NUMBER}?text={encoded_message}"
+        encoded_message = urllib.parse.quote(order_details)
 
-        st.link_button("📲 Confirm Order on WhatsApp", whatsapp_url)
+        whatsapp_url = (
+            f"https://wa.me/{YOUR_NUMBER}?text={encoded_message}"
+        )
 
-        st.success("✅ Click button above to send your order")
+        st.link_button(
+            "📲 Confirm Order on WhatsApp",
+            whatsapp_url
+        )
+
+        st.success(
+            "Order generated successfully. Click the WhatsApp button above."
+        )
