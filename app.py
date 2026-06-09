@@ -207,130 +207,6 @@ qty = st.number_input(
 # ==========================================
 # PRICE CALCULATION
 # ==========================================
-
-item_total = price * qty
-
-st.subheader(f"💰 Item Total: ₹{item_total}")
-# ==========================================
-# ADD TO CART
-# ==========================================
-
-if st.button("➕ Add To Cart"):
-
-    item = {
-        "product": product,
-        "qty": qty,
-        "price": price,
-        "total": item_total
-    }
-
-    if product == "Wax Sachet":
-
-        item.update({
-            "shape": shape,
-            "bg_color": color_bg,
-            "flower_color": color_flr,
-            "fragrance": fragrance
-        })
-
-    else:
-
-        item.update({
-            "color": color,
-            "fragrance": fragrance
-        })
-
-    st.session_state.cart.append(item)
-
-    st.success("✅ Product added to cart!")
-
-# ==========================================
-# CART
-# ==========================================
-
-st.header("🛒 Your Cart")
-
-grand_total = 0
-
-if not st.session_state.cart:
-
-    st.info("Cart is empty.")
-
-else:
-
-    for idx, item in enumerate(st.session_state.cart):
-
-        with st.expander(
-            f"{item['product']} | Qty: {item['qty']} | ₹{item['total']}"
-        ):
-
-            if item["product"] == "Wax Sachet":
-
-                st.write(f"Shape: {item['shape']}")
-                st.write(
-                    f"Background Color: {item['bg_color']}"
-                )
-                st.write(
-                    f"Flower Color: {item['flower_color']}"
-                )
-
-            else:
-
-                st.write(
-                    f"Color: {item['color']}"
-                )
-
-            st.write(
-                f"Fragrance: {item['fragrance']}"
-            )
-
-            st.write(
-                f"Quantity: {item['qty']}"
-            )
-
-            st.write(
-                f"Subtotal: ₹{item['total']}"
-            )
-
-            if st.button(
-                f"❌ Remove Item {idx+1}",
-                key=f"remove_{idx}"
-            ):
-                st.session_state.cart.pop(idx)
-                st.rerun()
-
-        grand_total += item["total"]
-
-    delivery_charge = 40 if grand_total < 198 else 0
-    final_total = grand_total + delivery_charge
-    
-    st.subheader(f"Subtotal: ₹{grand_total}")
-    
-    if delivery_charge:
-        st.warning(
-            "₹40 delivery charge applied because order value is below ₹198."
-        )
-    
-    st.subheader(f"💰 Final Total: ₹{final_total}")
-
-# ==========================================
-# CUSTOMER DETAILS
-# ==========================================
-
-st.header("📋 Customer Details")
-
-name = st.text_input("Name")
-mobile = st.text_input("Mobile Number")
-address = st.text_input(
-    "Address (Hall No, Room No)"
-)
-
-# ==========================================
-# WHATSAPP NUMBER
-# ==========================================
-
-YOUR_NUMBER = "916394996857"
-
 # ==========================================
 # GENERATE ORDER
 # ==========================================
@@ -399,19 +275,21 @@ Subtotal: ₹{item['total']}
 
             total += item["total"]
 
-        delivery_charge = 40 if 0 < grand_total < 198 else 0
+        # Delivery Charge Calculation
+        delivery_charge = 40 if 0 < total < 198 else 0
+
+        # Final Total
         grand_total = total + delivery_charge
 
-    order_details += f"""
+        # Final Summary
+        order_details += f"""
 
-    Subtotal: ₹{total}
-    Delivery Charge: ₹{delivery_charge}
+Subtotal: ₹{total}
+Delivery Charge: ₹{delivery_charge}
 
 💰 GRAND TOTAL: ₹{grand_total}
 
 Thank you for shopping with Zigcxy Bliss ✨
-"""
-
 """
 
         encoded_message = urllib.parse.quote(
