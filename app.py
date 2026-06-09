@@ -193,7 +193,7 @@ if st.button("🛒 Place Order"):
         )
 
         st.link_button(
-            "📲 Confirm Order on WhatsApp",
+            "📲 Please Confirm Order on WhatsApp to proceed",
             whatsapp_url
         )
 
