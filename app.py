@@ -119,7 +119,7 @@ if product == "Mess Glow Candle":
         fragrances
     )
 
-    price = 249
+    price = 199
 
 elif product == "Terracotta Glow Candle":
 
